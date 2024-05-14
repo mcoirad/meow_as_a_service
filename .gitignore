@@ -1,2 +1,4 @@
 bin/
 lib/
+.serverless/
+node_modules/
