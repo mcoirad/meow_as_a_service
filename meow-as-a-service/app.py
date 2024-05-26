@@ -46,15 +46,25 @@ def answer_call():
             resp.say('Sadly this cat later jumped into the trash and tried to eat some corn cobs. We are waiting for him to puke. Goodbye.')
             return str(resp)
         elif choice == '9':
-            resp.say('Sorry, out meowbox is full. Call again!')
+            resp.say("After the beep, please leave your meow.")
+            resp.record(timeout=10, transcribe=True, playBeep=True)
+            resp.say("Thank you for leaving a meowssage. One of raopresentatives will get back to you shortly.")
             return str(resp)
+        elif choice == '0':
+            resp.say("Meow mew meo prt hiss meow meaw myeow. Meow, press 1. Yowl, press 2. Meowmeow meuw, press 9.")
         else:
             # If the caller didn't choose 1 or 2, apologize and ask them again
             resp.say("Sorry, I don't understand that choice. If you are a cat, hang up and provide your own meowing.")
 
     # Start our <Gather> verb
     gather = Gather(num_digits=1)
-    gather.say('Meow. Welcome to Dial A Meow services. For meowing, press 1. For yowling, press 2. To leave a meowssage, press 9.')
+    gather.say("""
+        Meow. 
+        Welcome to Dial A Meow services. 
+        For meowing, press 1. 
+        For yowling, press 2. 
+        To leave a meowssage, press 9. 
+        Meow meow mew mrao myaow, press 0.""")
     resp.append(gather)
 
     # If the user doesn't select an option, redirect them into a loop
