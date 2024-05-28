@@ -40,21 +40,26 @@ def answer_call():
             resp.say('All our meowers are busy with other customers, please call again.')
             return str(resp)
         elif choice == '2':
-            resp.say('What follows are the yowls of a cat who really wants to eat corn cobs but is not being allowed to because he will eat them and puke.')
-            resp.say('Trigger warning for oppression and extreme deprivation.')
+            resp.say("""
+                What follows are the yowls of a cat who really wants to eat corn cobs 
+                but is not being allowed to because he will eat them and puke.
+                Trigger warning for oppression and extreme deprivation.
+            """)
             resp.play('https://shadow-penguin-3768.twil.io/assets/yowling.wav')
-            resp.say('Sadly this cat later jumped into the trash and tried to eat some corn cobs. We are waiting for him to puke. Goodbye.')
+            resp.say("""
+                Sadly this cat later jumped into the trash and tried to eat some corn cobs. 
+                We are waiting for him to puke. 
+                Goodbye.
+            """)
             return str(resp)
         elif choice == '9':
-            resp.say("After the beep, please leave your meow.")
-            resp.record(timeout=10, transcribe=True, playBeep=True)
-            resp.say("Thank you for leaving a meowssage. One of raopresentatives will get back to you shortly.")
+            resp.say("After the beep, please leave your meowssage. After you are finished, please press pound.")
+            resp.record(timeout=5, transcribe=False, playBeep=True, finishOnKey="#")
+            resp.say("Thank you for leaving a meowssage. One of our mraopresentatives will get back to you shortly.")
             return str(resp)
-        elif choice == '0':
-            resp.say("Meow mew meo prt hiss meow meaw myeow. Meow, press 1. Yowl, press 2. Meowmeow meuw, press 9.")
         else:
             # If the caller didn't choose 1 or 2, apologize and ask them again
-            resp.say("Sorry, I don't understand that choice. If you are a cat, hang up and provide your own meowing.")
+            resp.say("Sorry, I don't understand that choice. If you are a cat, hang up and provide your own meowing for yourself.")
 
     # Start our <Gather> verb
     gather = Gather(num_digits=1)
