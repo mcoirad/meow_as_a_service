@@ -21,6 +21,11 @@ def resource_not_found(e):
     return make_response(jsonify(error="Not found!"), 404)
 
 
+@app.errorhandler(500)
+def internal_server_error(e):
+    return make_response(jsonify(error="Server error!" + e), 500)
+
+
 def get_random_reply():
     return random.choice(
         [
