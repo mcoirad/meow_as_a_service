@@ -113,7 +113,7 @@ def answer_call():
                 Our service will then process and automatically translate the recorded meows into english.
             """
             )
-            resp.record(timeout=5, transcribe=False, playBeep=True, finishOnKey="#", action="/translate", transcribe=True)
+            resp.record(timeout=5, transcribe=True, playBeep=True, finishOnKey="#", action="/translate")
             return str(resp)
         else:
             # If the caller didn't choose 1 or 2, apologize and ask them again
