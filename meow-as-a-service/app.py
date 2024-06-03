@@ -39,6 +39,16 @@ def get_random_reply():
     )
 
 
+@app.route("/recording", methods=["GET", "POST"])
+def post_recording():
+    resp = VoiceResponse()
+    resp.say(
+        "Thank you for leaving a meowssage. One of our mraopresentatives will get back to you shortly."
+    )
+    resp.redirect("/answer")
+    return str(resp)
+
+
 @app.route("/translate", methods=["GET", "POST"])
 def translate_meow():
     resp = VoiceResponse()
@@ -100,10 +110,7 @@ def answer_call():
             resp.say(
                 "After the beep, please leave your meowssage. After you are finished, please press pound."
             )
-            resp.record(timeout=5, transcribe=False, playBeep=True, finishOnKey="#")
-            resp.say(
-                "Thank you for leaving a meowssage. One of our mraopresentatives will get back to you shortly."
-            )
+            resp.record(timeout=5, transcribe=False, playBeep=True, finishOnKey="#", action="/recording")
             return str(resp)
         elif choice == "0":
             resp.say(
@@ -130,7 +137,7 @@ def answer_call():
         For meowing, press 1. 
         For yowling, press 2. 
         To leave a meowssage, press 9. 
-        To access our free meow to english translation service, press 0."""
+        To access our cat to human translation service, press 0."""
     )
     resp.append(gather)
 
