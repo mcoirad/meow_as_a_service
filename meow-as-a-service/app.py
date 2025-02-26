@@ -63,6 +63,7 @@ def translate_meow():
         resp.say("Your meows translate to the following human words.")
         resp.pause(1)
         resp.say(meow_translation, voice="Polly.Brian")
+    resp.redirect("/answer")
     return str(resp)
 
 
